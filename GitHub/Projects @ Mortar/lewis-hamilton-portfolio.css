@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background-color: #ffffff;
+    cursor: none;
+}
+
+/* Grid Canvas Background */
+#gridCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.15;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Hero Images */
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.base-image {
+    /* Replace 'image1.jpg' with your first portrait image */
+    background-image: url('image1.jpg');
+    z-index: 1;
+}
+
+.reveal-image {
+    /* Replace 'image2.jpg' with your second portrait image */
+    background-image: url('image2.jpg');
+    z-index: 2;
+    clip-path: circle(0px at 0px 0px);
+    transition: clip-path 0.1s ease-out;
+}
+
+/* Cursor Spotlight */
+.cursor-spotlight {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: normal;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Cursor Echoes */
+.cursor-echoes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cursor-echo {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: echoFade 0.8s ease-out forwards;
+}
+
+@keyframes echoFade {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+/* Content Overlay */
+.content-overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    color: #000000;
+}
+
+/* Text Elements Base Styling */
+.content-overlay > div {
+    position: absolute;
+    transition: color 0.3s ease, transform 0.1s ease-out;
+}
+
+/* Top Left: Name */
+.top-left.name {
+    top: 60px;
+    left: 60px;
+}
+
+.top-left.name h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.top-left.name span {
+    display: block;
+}
+
+/* Top Right: Navigation */
+.top-right.nav-link {
+    top: 60px;
+    right: 60px;
+}
+
+.top-right.nav-link a {
+    font-size: 18px;
+    color: inherit;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+}
+
+.top-right.nav-link a:hover {
+    opacity: 0.7;
+}
+
+/* Bottom Left: Title */
+.bottom-left.title {
+    bottom: 60px;
+    left: 60px;
+}
+
+.bottom-left.title p {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 1.6;
+}
+
+/* Bottom Right: Social Links */
+.bottom-right.social-links {
+    bottom: 60px;
+    right: 60px;
+    display: flex;
+    gap: 24px;
+}
+
+.bottom-right.social-links a {
+    color: inherit;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-right.social-links a:hover {
+    transform: scale(1.1);
+}
+
+.bottom-right.social-links svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Inverted State for Elements Under Spotlight */
+.content-overlay > div.inverted {
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-left.name {
+        top: 40px;
+        left: 40px;
+    }
+
+    .top-left.name h1 {
+        font-size: 42px;
+    }
+
+    .top-right.nav-link {
+        top: 40px;
+        right: 40px;
+    }
+
+    .top-right.nav-link a {
+        font-size: 16px;
+    }
+
+    .bottom-left.title {
+        bottom: 40px;
+        left: 40px;
+    }
+
+    .bottom-left.title p {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+    }
+
+    .bottom-right.social-links {
+        bottom: 40px;
+        right: 40px;
+        gap: 20px;
+    }
+
+    .bottom-right.social-links svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .cursor-spotlight,
+    .cursor-echo {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-left.name {
+        top: 30px;
+        left: 30px;
+    }
+
+    .top-left.name h1 {
+        font-size: 32px;
+    }
+
+    .top-right.nav-link {
+        top: 30px;
+        right: 30px;
+    }
+
+    .bottom-left.title {
+        bottom: 30px;
+        left: 30px;
+    }
+
+    .bottom-left.title p {
+        font-size: 12px;
+    }
+
+    .bottom-right.social-links {
+        bottom: 30px;
+        right: 30px;
+        gap: 16px;
+    }
+
+    .bottom-right.social-links svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cursor-spotlight,
+    .cursor-echo {
+        width: 150px;
+        height: 150px;
+    }
+}
